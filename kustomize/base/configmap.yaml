@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pace-configmap
+data:
+  config.yaml: |
+    foo: "bar"

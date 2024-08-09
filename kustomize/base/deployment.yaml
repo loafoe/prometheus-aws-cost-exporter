@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-cost-exporter
+  labels:
+    app: aws-cost-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aws-cost-exporter
+  template:
+    metadata:
+      labels:
+        app: aws-cost-exporter
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
+      serviceAccountName: aws-cost-exporter
+      containers:
+        - name: aws-cost-exporter
+          image: ghcr.io/loafoe/prometheus-aws-cost-exporter:v0.0.1
+          command: ["/usr/bin/prometheus-aws-cost-exporter"]
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 12001
+            runAsGroup: 12001
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - all
+            seccompProfile:
+              type: RuntimeDefault
+          ports:
+            - name: metrics
+              containerPort: 8080
+              protocol: TCP
+            - name: http-metrics
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 10m
+              memory: 128Mi
+            requests:
+              cpu: 20m
+              memory: 256Mi
+          volumeMounts:
+            - mountPath: /etc/pace
+              name: pace-configmap
+      volumes:
+        - name: pace-configmap
+          configMap:
+            name: pace-configmap
+            items:
+              - key: config.yaml
+                path: config.yaml
