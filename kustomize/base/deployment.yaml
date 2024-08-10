@@ -26,7 +26,7 @@ spec:
       serviceAccountName: aws-cost-exporter
       containers:
         - name: aws-cost-exporter
-          image: ghcr.io/loafoe/prometheus-aws-cost-exporter:v0.0.2
+          image: ghcr.io/loafoe/prometheus-aws-cost-exporter:v0.0.3
           command: ["/usr/bin/prometheus-aws-cost-exporter"]
           imagePullPolicy: IfNotPresent
           securityContext:
