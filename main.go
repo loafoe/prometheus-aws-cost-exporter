@@ -49,10 +49,6 @@ func fetchCostData() {
 				Key:  aws.String("SERVICE"),
 			},
 			{
-				Type: aws.String("DIMENSION"),
-				Key:  aws.String("REGION"),
-			},
-			{
 				Type: aws.String("TAG"),
 				Key:  aws.String("Environment"),
 			},
