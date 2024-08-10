@@ -24,17 +24,17 @@ spec:
         ]
       }
     inlinePolicy:
-      name: ce-access
-      policy: |
-        {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "ce:*"
-              ],
-              "Resource": "*"
-            }
-          ]
-        }
+      - name: ce-access
+        policy: |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "ce:*"
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
