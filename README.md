@@ -1,4 +1,4 @@
-# promethues-aws-cost-exporter
+# prometheus-aws-cost-exporter
 
 This is a simple Prometheus exporter that fetches AWS cost data from the AWS Cost Explorer API and exposes it as Prometheus metrics.
 
