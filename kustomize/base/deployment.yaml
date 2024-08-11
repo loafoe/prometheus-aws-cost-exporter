@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: aws-cost-exporter
+      name: aws-cost-exporter
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: aws-cost-exporter
+        name: aws-cost-exporter
     spec:
       affinity:
         nodeAffinity:
