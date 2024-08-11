@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -63,7 +64,10 @@ func fetchCostData() {
 	costGauge.Reset()
 	for _, group := range result.ResultsByTime[0].Groups {
 		service := *group.Keys[0]
-		environment := *group.Keys[1]
+		environment := "unknown"
+		if comp := strings.Split(*group.Keys[1], "$"); len(comp) > 1 {
+			environment = comp[1]
+		}
 		amount := *group.Metrics["UnblendedCost"].Amount
 		cost, err := strconv.ParseFloat(amount, 64)
 		if err != nil {
