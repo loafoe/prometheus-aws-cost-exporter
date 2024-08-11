@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: aws-cost-exporter
+        app.kubernetes.io/name: aws-cost-exporter
     spec:
       affinity:
         nodeAffinity:
