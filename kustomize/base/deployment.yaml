@@ -8,7 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aws-cost-exporter
+      app.kubernetes.io/name: aws-cost-exporter
   template:
     metadata:
       labels:
