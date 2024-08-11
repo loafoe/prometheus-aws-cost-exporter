@@ -21,7 +21,7 @@ var (
 			Name: "aws_cost",
 			Help: "AWS cost in USD",
 		},
-		[]string{"service", "region", "environment"},
+		[]string{"service", "environment"},
 	)
 )
 
@@ -63,15 +63,14 @@ func fetchCostData() {
 	costGauge.Reset()
 	for _, group := range result.ResultsByTime[0].Groups {
 		service := *group.Keys[0]
-		region := *group.Keys[1]
-		environment := *group.Keys[2]
+		environment := *group.Keys[1]
 		amount := *group.Metrics["UnblendedCost"].Amount
 		cost, err := strconv.ParseFloat(amount, 64)
 		if err != nil {
 			log.Printf("Failed to parse cost for service %s: %v", service, err)
 			continue
 		}
-		costGauge.WithLabelValues(service, region, environment).Set(cost)
+		costGauge.WithLabelValues(service, environment).Set(cost)
 	}
 }
 
