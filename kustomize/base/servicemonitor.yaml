@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: aws-cost-exporter
+      app.kubernetes.io/name: aws-cost-exporter
   endpoints:
     - port: http-metrics
       path: /metrics
