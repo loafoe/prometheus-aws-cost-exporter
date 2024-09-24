@@ -6,5 +6,6 @@ resources:
 - iamrole.yaml
 - serviceaccount.yaml
 - servicemonitor.yaml
+- service.yaml
 
 namespace: finops-system

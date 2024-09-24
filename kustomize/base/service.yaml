@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  app.kubernetes.io/name: aws-cost-exporter
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: aws-cost-exporter
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: http-metrics
