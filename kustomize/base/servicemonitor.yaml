@@ -9,3 +9,6 @@ spec:
   endpoints:
     - port: http-metrics
       path: /metrics
+  namespaceSelector:
+    matchNames:
+      - finops-system
