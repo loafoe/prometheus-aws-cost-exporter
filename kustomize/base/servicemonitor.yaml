@@ -2,7 +2,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: aws-cost-exporter
-  namespace: finops-system
 spec:
   selector:
     matchLabels:
@@ -10,6 +9,3 @@ spec:
   endpoints:
     - port: http-metrics
       path: /metrics
-  namespaceSelector:
-    matchNames:
-      - finops-system
