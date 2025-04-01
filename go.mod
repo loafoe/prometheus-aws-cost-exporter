@@ -1,9 +1,8 @@
 module github.com/loafoe/prometheus-aws-cost-exporter
 
 go 1.22.5
-
 require (
-	github.com/aws/aws-sdk-go v1.55.5
+	github.com/aws/aws-sdk-go v1.55.6
 	github.com/prometheus/client_golang v1.20.5
 )
 
